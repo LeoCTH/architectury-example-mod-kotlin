@@ -7,10 +7,8 @@ pluginManagement {
     }
 }
 
-include(
-    "common",
-    "fabric"//,
-    //"forge"
-)
+include("common")
+include("fabric")
+include("forge")
 
 rootProject.name = "architectury-example-mod"

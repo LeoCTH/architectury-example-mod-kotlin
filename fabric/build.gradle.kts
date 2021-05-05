@@ -42,14 +42,14 @@ tasks {
         archiveClassifier.set("dev")
     }
 
-    getByName<Jar>("sourcesJar") {
-        val commonSources = project(":common").tasks.getByName<Jar>("sourceJar")
+    named<Jar>("sourcesJar") {
+        val commonSources = project(":common").tasks.getByName<Jar>("sourcesJar")
         dependsOn(commonSources)
         from(commonSources.archiveFile.map { zipTree(it) })
     }
 
-    getByName<Jar>("remapJar") {
-        inputs.file(shadowJar.get().archiveFile)
+    named<net.fabricmc.loom.task.RemapJarTask>("remapJar") {
+        input.set(shadowJar.get().archiveFile)
         dependsOn("shadowJar")
         archiveClassifier.set("fabric")
     }
